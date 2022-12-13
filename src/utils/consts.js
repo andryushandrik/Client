@@ -1,5 +1,6 @@
 export const ADMIN_ROUTE = '/admin'
 export const LOGIN_ROUTE = '/login'
+export const RUNS_ROUTE = '/runs'
 export const REGISTRATION_ROUTE = '/registration'
 export const LIST_ROUTE = '/'
 export const RENT_ROUTE = '/rent'

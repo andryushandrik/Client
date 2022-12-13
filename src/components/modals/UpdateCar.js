@@ -20,7 +20,7 @@ const UpdateCar = observer(({id, show, onHide}) => {
             setYear(year);
         });
     }
-    }, []);
+    }, [id]);
         /* useEffect(() => {
             fetchTypes().then(data => car.setTypes(data))
             fetchBrands().then(data => car.setBrands(data))
@@ -72,7 +72,7 @@ const UpdateCar = observer(({id, show, onHide}) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="outline-danger" onClick={onHide}>Закрыть</Button>
-                <Button variant="outline-success" onClick={upCar}>Добавить</Button>
+                <Button variant="outline-success" onClick={upCar}>Сохранить изменения</Button>
             </Modal.Footer>
         </Modal>
     );
