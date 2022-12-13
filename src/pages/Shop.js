@@ -1,10 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import CreateCar from "../components/modals/CreateCar";
-import TypeBar from "../components/TypeBar";
-import BrandBar from "../components/BrandBar";
+import {Row,Col ,Form} from "react-bootstrap";
+
 import CarList from "../components/CarList";
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
@@ -19,6 +16,8 @@ import Pages from "../components/Pages";
 
 const Shop = observer(() => {
     const { car, user } = useContext(Context);
+    const [minYear, setMinYear] = useState(null)
+    const [maxProbeg, setMaxProbeg] = useState(null)
 
     const _startRent = async (carId) => {
         let data = await startRent(carId);
@@ -47,6 +46,20 @@ const Shop = observer(() => {
         });
     }, [car, user.rent]);
 
+    useEffect(() => {
+        console.log(maxProbeg);
+        fetchCars({maxProbeg, minYear}).then((data) => {
+            car.setCars(
+                data.sort(function compareNumbers(a, b) {
+                    return a.id - b.id;
+                })
+            );
+            car.setTotalCount(data.length);
+        });
+
+       
+    }, [maxProbeg,minYear]);
+
     /*  useEffect(() => {
         fetchCars(car.selectedType.id, car.selectedBrand.id, car.page, 2).then(data => {
             car.setCars(data.rows)
@@ -57,6 +70,26 @@ const Shop = observer(() => {
     return (
         <Container>
             <Row className="mt-2">
+                <Col md={12}>
+                <Form>
+                    
+                    <Form.Control
+                        value={minYear}
+                        onChange={e => setMinYear(e.target.value)}
+                        className="mt-3"
+                        placeholder="Минимальный год"
+                        disabled={user.rent ? true : false}
+                    />
+                    <Form.Control
+                        value={maxProbeg}
+                        onChange={e => setMaxProbeg(e.target.value)}
+                        className="mt-3"
+                        placeholder="Максимальный пробег"
+                        disabled={user.rent ? true : false}
+        
+                    />
+                    </Form>
+                </Col>
                 <Col md={12}>
                     <CarList button="Взять" buttonClick={_startRent} />
                 </Col>

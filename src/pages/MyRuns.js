@@ -10,7 +10,7 @@ const MyRuns = () => {
             console.log(data);
             setRuns(
                 data.sort(function compareNumbers(a, b) {
-                    return a.id - b.id;
+                    return b.id - a.id;
                 })
             );
         });
@@ -23,7 +23,7 @@ const MyRuns = () => {
                     <Container>
                         <Row>
                             {Object.keys(run).map((prop) => (
-                                <Col className="flex-grow-1">
+                                <Col className="flex-grow-1 border-bottom">
                                 <p>
                                     {prop} : <br />
                                     {run[prop]}

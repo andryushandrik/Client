@@ -19,8 +19,10 @@ export const delCar = async (id) => {
     return data;
 };
 
-export const fetchCars = async () => {
-    const { data } = await $host.get("api/car");
+export const fetchCars = async (params) => {
+    console.log(params);
+    const { data } = await $host.get("api/car", {params: params});
+    console.log(data);
     return data;
 };
 

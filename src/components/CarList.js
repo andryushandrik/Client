@@ -9,7 +9,7 @@ const CarList = observer((props) => {
     const[userrent, setUserrent] = useState(user.rent);
     useEffect(() => {
       setUserrent(user.rent);
-    }, [user.rent, car])
+    }, [user.rent, car,car.cars])
     
     return (
         <Row className="d-flex">

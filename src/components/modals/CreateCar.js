@@ -20,7 +20,10 @@ const CreateCar = observer(({show, onHide}) => {
     const addCar = () => {
         const formData = {model,probeg,year}
         
-        createCar(formData).then(data => onHide())
+        createCar(formData).then(data => {
+            car.cars.push(data)
+            onHide()
+        })
     }
 
     return (
